@@ -1,0 +1,12 @@
+model = Sequential()
+model.add(LSTM(256, input_shape = (n_words, len(unique_tokens)), return_sequences=True))
+model.add(LSTM(256))
+model.add(Dense(len(unique_tokens)))
+model.add(Activation("softmax"))
+
+
+Epoch 46/50
+4641/4641 [==============================] - 88s 19ms/step - loss: 1.8895 - accuracy: 0.7195 - val_loss: 1.5315 - val_accuracy: 0.7547
+
+233/233 [==============================] - 2s 8ms/step - loss: 1.5611 - accuracy: 0.7502
+Test Loss: 1.5610722303390503, Test Accuracy: 0.7501683235168457
