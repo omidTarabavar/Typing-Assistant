@@ -2,8 +2,6 @@ import numpy as np
 import pandas as pd
 import nltk
 nltk.download('punkt')
-from sklearn.model_selection import train_test_split
-import joblib
 
 def load_data():
     with open("./data/en_US.blogs.txt", "r", encoding = "utf8") as f:
@@ -48,7 +46,7 @@ def replace_oov_words(tokenized_sentences, vocabulary, unknown_token = "<unk>"):
         replaced_tokenized_sentences.append(replaced_sentence)
     return replaced_tokenized_sentences
 
-def count_n_grams(tokenized_sentences, n, start_token = "<s>", end_token = "<e>"):
+def create_n_gram(tokenized_sentences, n, start_token = "<s>", end_token = "<e>"):
     n_grams = {}
     for sentence in tokenized_sentences:
         sentence = [start_token] * n + sentence + [end_token]
@@ -64,7 +62,7 @@ def count_n_grams(tokenized_sentences, n, start_token = "<s>", end_token = "<e>"
 def get_n_grams(tokenized_sentences):
     n_gram_count_list = []
     for n in range(1,6):
-        n_model_counts = count_n_grams(tokenized_sentences,n)
+        n_model_counts = create_n_gram(tokenized_sentences,n)
         n_gram_count_list.append(n_model_counts)
     return n_gram_count_list
 
